@@ -13,8 +13,8 @@ public class CpfService {
     public String validCpf(String cpf) {
         //validating cpf manually
         boolean error = false;
-        int multiplier = 0;
-        String listaImprimida = "";
+        int multiplier = 2;
+        int sum = 0;
 
         if (cpf.length() != 11) {
             error = true;
@@ -28,12 +28,17 @@ public class CpfService {
 
         //multiplying the numbers,
         //from right to left, by increasing numbers starting from 2
-        for (int i = cpfList.length - 1; i >= 2; i--) {
-            cpfList[i] = String.valueOf(Integer.parseInt(cpfList[i])*multiplier);
-            multiplier++;
-            listaImprimida += " - "+cpfList[i];
+        String[] cpfTemporaryList = new String[cpf.length()];
+        for (int i = 0; i < cpf.length(); i++) {
+            cpfTemporaryList[i] = String.valueOf(cpf.charAt(i));
         }
-        return listaImprimida;
-        // resultado esperado: 10	9	8	28	24	20	28	21	14
+        for (int i = cpfList.length - 1; i >= 0; i--) {
+            sum += (Integer.parseInt(cpfTemporaryList[i])*multiplier);
+            multiplier++;
+        }
+        double division = sum/11;
+        
+        return String.valueOf(sum);
+        // resultado esperado 162
     }
 }
