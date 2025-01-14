@@ -1,2 +1,2 @@
 ﻿# projeto-seguros
-# projeto-seguros
+# readme feio
